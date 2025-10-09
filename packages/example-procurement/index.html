@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/BuildingMaterialProcurement/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Secure procurement platform using fully homomorphic encryption for confidential building material sourcing" />
+    <title>Secure Procurement Platform</title>
+
+    <!-- Google Fonts - Inter (95%+ 获奖项目使用) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/BuildingMaterialProcurement/assets/js/main-BvwMUZgB.js"></script>
+    <link rel="modulepreload" crossorigin href="/BuildingMaterialProcurement/assets/js/utils-CasXk--d.js">
+    <link rel="modulepreload" crossorigin href="/BuildingMaterialProcurement/assets/js/vendor-web3-D-lPvdns.js">
+    <link rel="stylesheet" crossorigin href="/BuildingMaterialProcurement/assets/css/main-aPnl21B-.css">
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Main Container -->
+      <div class="container animate-fade-in">
+
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+          <h1 class="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-accent-light to-accent bg-clip-text text-transparent">
+            🔒 Secure Procurement Platform
+          </h1>
+          <p class="text-lg text-text-muted mb-6">
+            Confidential Supply Chain Management with FHE Technology
+          </p>
+
+          <!-- Wallet Status -->
+          <div id="wallet-status"></div>
+        </header>
+
+        <!-- Tab Navigation (100% 使用) -->
+        <nav class="tab-nav">
+          <button class="tab-button active" data-tab="create">
+            Create Procurement
+          </button>
+          <button class="tab-button" data-tab="bid">
+            Submit Bid
+          </button>
+          <button class="tab-button" data-tab="view">
+            View Procurements
+          </button>
+          <button class="tab-button" data-tab="manage">
+            Manage Suppliers
+          </button>
+          <button class="tab-button" data-tab="history">
+            Transaction History
+          </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <div id="tab-content">
+
+          <!-- ===== Create Procurement Tab ===== -->
+          <div id="tab-create" class="tab-content">
+            <div class="panel max-w-3xl mx-auto">
+              <h2 class="card-title text-accent-light mb-6">
+                Create New Procurement
+              </h2>
+
+              <form id="create-procurement-form">
+                <div class="layout-grid-2 mb-6">
+                  <div>
+                    <label class="form-label">Material Type</label>
+                    <select id="material-type" class="form-select" required>
+                      <option value="0">Cement</option>
+                      <option value="1">Steel</option>
+                      <option value="2">Concrete</option>
+                      <option value="3">Brick</option>
+                      <option value="4">Lumber</option>
+                      <option value="5">Insulation</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="form-label">
+                      Quantity (units)
+                      <span class="badge badge-encrypted ml-2">🔐 Encrypted</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="quantity"
+                      class="form-input"
+                      placeholder="Enter quantity"
+                      min="1"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <label class="form-label">
+                    Quality Grade (1-10)
+                    <span class="badge badge-encrypted ml-2">🔐 Encrypted</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="quality-grade"
+                    class="form-input"
+                    placeholder="Quality grade"
+                    min="1"
+                    max="10"
+                    required
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label class="form-label">Specifications</label>
+                  <textarea
+                    id="specifications"
+                    class="form-textarea"
+                    placeholder="Detailed specifications and requirements..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full">
+                  Create Procurement
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ===== Submit Bid Tab ===== -->
+          <div id="tab-bid" class="tab-content hidden">
+            <div class="panel max-w-3xl mx-auto">
+              <h2 class="card-title text-accent-light mb-6">
+                Submit Confidential Bid
+              </h2>
+
+              <form id="submit-bid-form">
+                <div class="layout-grid-2 mb-6">
+                  <div>
+                    <label class="form-label">Procurement ID</label>
+                    <input
+                      type="number"
+                      id="bid-procurement-id"
+                      class="form-input"
+                      placeholder="Enter procurement ID"
+                      min="1"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label class="form-label">
+                      Price (ETH)
+                      <span class="badge badge-encrypted ml-2">🔐 Encrypted</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="bid-price"
+                      class="form-input"
+                      placeholder="0.00"
+                      step="0.001"
+                      min="0"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="layout-grid-2 mb-6">
+                  <div>
+                    <label class="form-label">
+                      Delivery Time (days)
+                      <span class="badge badge-encrypted ml-2">🔐 Encrypted</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="delivery-time"
+                      class="form-input"
+                      placeholder="Delivery days"
+                      min="1"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label class="form-label">
+                      Quality Score (0-100)
+                      <span class="badge badge-encrypted ml-2">🔐 Encrypted</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="quality-score"
+                      class="form-input"
+                      placeholder="Quality score"
+                      min="0"
+                      max="100"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <label class="form-label">Certifications</label>
+                  <textarea
+                    id="certifications"
+                    class="form-textarea"
+                    placeholder="Your certifications and qualifications..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full">
+                  Submit Confidential Bid
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- ===== View Procurements Tab ===== -->
+          <div id="tab-view" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="card-title text-accent-light">Active Procurements</h2>
+              <button id="refresh-procurements" class="btn btn-secondary">
+                🔄 Refresh
+              </button>
+            </div>
+
+            <div id="procurements-container" class="layout-grid">
+              <div class="panel text-center text-text-muted py-12">
+                Click refresh to load procurements...
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Manage Suppliers Tab ===== -->
+          <div id="tab-manage" class="tab-content hidden">
+            <div class="layout-grid-2">
+              <!-- Authorize Supplier Card -->
+              <div class="panel">
+                <h3 class="text-xl font-bold text-accent-light mb-4">
+                  Authorize Supplier
+                </h3>
+                <form id="authorize-supplier-form">
+                  <div class="mb-4">
+                    <label class="form-label">Supplier Address</label>
+                    <input
+                      type="text"
+                      id="supplier-address"
+                      class="form-input address"
+                      placeholder="0x..."
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success w-full">
+                    Authorize Supplier
+                  </button>
+                </form>
+              </div>
+
+              <!-- Update Reputation Card -->
+              <div class="panel">
+                <h3 class="text-xl font-bold text-accent-light mb-4">
+                  Update Reputation
+                </h3>
+                <form id="update-reputation-form">
+                  <div class="mb-4">
+                    <label class="form-label">Supplier Address</label>
+                    <input
+                      type="text"
+                      id="reputation-address"
+                      class="form-input address"
+                      placeholder="0x..."
+                      required
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Reputation (0-100)</label>
+                    <input
+                      type="number"
+                      id="reputation-score"
+                      class="form-input"
+                      placeholder="Reputation score"
+                      min="0"
+                      max="100"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary w-full">
+                    Update Reputation
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Check Supplier Status -->
+            <div class="panel mt-6">
+              <h3 class="text-xl font-bold text-accent-light mb-4">
+                Check Supplier Status
+              </h3>
+              <form id="check-supplier-form" class="flex gap-4">
+                <input
+                  type="text"
+                  id="check-address"
+                  class="form-input address flex-1"
+                  placeholder="Supplier address"
+                  required
+                />
+                <button type="submit" class="btn btn-secondary">
+                  Check Status
+                </button>
+              </form>
+              <div id="supplier-status" class="mt-4"></div>
+            </div>
+          </div>
+
+          <!-- ===== Transaction History Tab ===== -->
+          <div id="tab-history" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="card-title text-accent-light">Transaction History</h2>
+              <button id="clear-history" class="btn btn-secondary">
+                🗑️ Clear History
+              </button>
+            </div>
+            <div id="history-container"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
