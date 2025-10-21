@@ -1,6 +1,17 @@
-export * from "../internal/fhevm";
-export * from "../internal/RelayerSDKLoader";
-export * from "../internal/PublicKeyStorage";
-export * from "../internal/fhevmTypes";
-export * from "../internal/constants";
+/**
+ * Core FHEVM exports
+ */
 
+export {
+  createFHEVMInstance,
+  getFHEVMInstance,
+  isInitialized,
+  resetInstance,
+  encryptValue,
+  decryptValue,
+  createEIP712Signature,
+  validateFHEType,
+  formatEncryptedInput,
+} from './fhevm';
+
+export type { FHEVMConfig, FHEType } from './fhevm';
