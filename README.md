@@ -8,14 +8,15 @@
 
 ## 🎯 FHEVM SDK Bounty Submission
 
-This repository contains a **universal FHEVM SDK** and example implementation demonstrating how to build privacy-preserving decentralized applications using Fully Homomorphic Encryption.
+This repository contains a **universal FHEVM SDK** and example implementations demonstrating how to build privacy-preserving decentralized applications using Fully Homomorphic Encryption.
 
 ### 📦 What's Inside
 
 This is a **monorepo** containing:
 
 1. **`@fhevm/sdk`** - Universal, reusable SDK package
-2. **`example-procurement`** - Complete dApp example (Secure Procurement Platform)
+2. **`example-procurement`** - Complete Vite dApp example (Secure Procurement Platform)
+3. **`example-nextjs`** - Next.js integration example with App Router
 
 ---
 
@@ -57,16 +58,27 @@ fhevm-react-template/
 │   │   ├── src/
 │   │   │   ├── core/           # Core FHE encryption/decryption
 │   │   │   ├── hooks/          # React hooks (useFHEVM, useEncrypt, etc.)
+│   │   │   ├── vue/            # Vue 3 composables
 │   │   │   ├── utils/          # Utility functions
 │   │   │   └── types/          # TypeScript type definitions
+│   │   ├── docs/               # Documentation
 │   │   ├── package.json
 │   │   └── README.md
 │   │
-│   └── example-procurement/    # 📱 Example dApp
-│       ├── contracts/          # Solidity smart contracts
-│       ├── scripts/            # Deployment scripts
-│       ├── test/               # Contract tests
-│       ├── src/                # React frontend
+│   ├── example-procurement/    # 📱 Vite + React Example
+│   │   ├── contracts/          # Solidity smart contracts
+│   │   ├── scripts/            # Deployment scripts
+│   │   ├── test/               # Contract tests
+│   │   ├── src/                # React frontend
+│   │   ├── package.json
+│   │   └── README.md
+│   │
+│   └── example-nextjs/         # ⚡ Next.js Example
+│       ├── app/                # Next.js App Router
+│       │   ├── layout.tsx      # Root layout with providers
+│       │   ├── page.tsx        # Home page with SDK demo
+│       │   └── globals.css     # Styles
+│       ├── providers.tsx       # FHEVM Provider setup
 │       ├── package.json
 │       └── README.md
 │
@@ -84,6 +96,7 @@ The `@fhevm/sdk` package provides a **modular, wagmi-like API** for integrating 
 
 ✅ **Framework Agnostic Core** - Use with React, Vue, or vanilla JS
 ✅ **React Hooks** - `useFHEVM`, `useEncrypt`, `useDecrypt`, `useFHEContract`
+✅ **Vue 3 Composables** - `useFHEVM`, `useEncrypt`, `useDecrypt`
 ✅ **TypeScript First** - Full type safety
 ✅ **EIP-712 Signing** - Secure decrypt operations
 ✅ **Modular Architecture** - Import only what you need
@@ -95,6 +108,8 @@ npm install @fhevm/sdk
 ```
 
 ### Basic Usage
+
+#### React
 
 ```typescript
 import { FHEVMProvider, useFHEVM, useEncrypt } from '@fhevm/sdk';
@@ -126,13 +141,42 @@ function MyComponent() {
 }
 ```
 
+#### Next.js
+
+```typescript
+// app/providers.tsx
+'use client';
+
+import { FHEVMProvider } from '@fhevm/sdk';
+
+export function Providers({ children }) {
+  return (
+    <FHEVMProvider config={{ chainId: 11155111 }} autoInit={true}>
+      {children}
+    </FHEVMProvider>
+  );
+}
+
+// app/page.tsx
+'use client';
+
+import { useFHEVM, useEncrypt } from '@fhevm/sdk';
+
+export default function Home() {
+  const { isInitialized } = useFHEVM();
+  const { encrypt } = useEncrypt();
+
+  // Your component logic...
+}
+```
+
 [📖 Full SDK Documentation](./packages/fhevm-sdk/README.md)
 
 ---
 
-## 📱 Example: Secure Procurement Platform
+## 📱 Example 1: Secure Procurement Platform (Vite)
 
-A complete privacy-preserving procurement system demonstrating SDK usage.
+A complete privacy-preserving procurement system demonstrating SDK usage with Vite + React.
 
 ### Features
 
@@ -161,6 +205,33 @@ npm run dev
 
 ---
 
+## ⚡ Example 2: Next.js Integration
+
+A Next.js 14+ App Router example demonstrating seamless SDK integration with server-side rendering.
+
+### Features
+
+- ✅ **App Router Support** - Next.js 14+ with React Server Components
+- ✅ **Client-Side FHEVM** - Automatic SDK initialization
+- ✅ **Encryption Demo** - Interactive UI for testing encryption
+- ✅ **TypeScript** - Full type safety
+- ✅ **Modern Styling** - Tailwind CSS integration
+
+### Local Development
+
+```bash
+# From root directory
+cd packages/example-nextjs
+npm install
+npm run dev
+```
+
+Visit `http://localhost:3000` to see the Next.js example in action.
+
+[📖 Next.js Example Documentation](./packages/example-nextjs/README.md)
+
+---
+
 ## 🛠️ Development Workflow
 
 ### Build Everything
@@ -175,10 +246,15 @@ npm run build
 npm run build:sdk
 ```
 
-### Build Example App Only
+### Build Example Apps
 
 ```bash
+# Vite example
 npm run build:example
+
+# Next.js example
+cd packages/example-nextjs
+npm run build
 ```
 
 ### Run Tests
@@ -211,7 +287,7 @@ npm run deploy
 ### Core Functions
 
 - `createFHEVMInstance(config)` - Initialize FHEVM instance
-- `encryptInput(value, type)` - Encrypt a value
+- `encryptValue(value, type)` - Encrypt a value
 - `createEIP712Signature(...)` - Create decrypt signature
 - `decryptValue(...)` - Decrypt an encrypted value
 
@@ -223,13 +299,41 @@ npm run deploy
 - `useFHEContract(address, abi)` - Interact with FHE contracts
 - `useEncryptedInput()` - Handle encrypted form inputs
 
+### Vue 3 Composables
+
+- `useFHEVM()` - FHEVM instance management
+- `useEncrypt()` - Encryption composable
+- `useDecrypt()` - Decryption composable
+
 ### Utilities
 
 - `formatEncryptedValue()` - Format encrypted data
 - `validateFHEType()` - Validate FHE data types
 - `serializeProof()` - Serialize zero-knowledge proofs
 
+### Next.js Integration
+
+```typescript
+// Use 'use client' directive for client components
+'use client';
+
+import { FHEVMProvider, useFHEVM, useEncrypt } from '@fhevm/sdk';
+
+// Providers should be in a separate client component
+export function Providers({ children }) {
+  return <FHEVMProvider autoInit>{children}</FHEVMProvider>;
+}
+
+// Use hooks in client components
+export function EncryptButton() {
+  const { isInitialized } = useFHEVM();
+  const { encrypt } = useEncrypt();
+  // ...
+}
+```
+
 [📖 Complete API Documentation](./packages/fhevm-sdk/docs/API.md)
+[📖 Framework Integration Guide](./packages/fhevm-sdk/docs/FRAMEWORK_INTEGRATION.md)
 
 ---
 
@@ -238,6 +342,9 @@ npm run deploy
 [![Video Demo](https://img.shields.io/badge/Watch-Video%20Demo-red?logo=youtube)](https://youtube.com/your-video-link)
 
 > Demonstrates setup, SDK integration, and design choices
+
+**Video Script**: [VIDEO_SCRIPT.md](./VIDEO_SCRIPT.md)
+**Subtitles**: [VIDEO_SUBTITLES.txt](./VIDEO_SUBTITLES.txt)
 
 ---
 
@@ -254,9 +361,11 @@ npm run deploy
   - ✅ Custom hooks for FHE operations
   - ✅ Context providers
   - ✅ TypeScript support
+  - ✅ Next.js compatibility
 
-- ✅ **Example Implementation**
-  - ✅ Next.js/React template *(Vite + React)*
+- ✅ **Example Implementations**
+  - ✅ Vite + React template (Procurement Platform)
+  - ✅ Next.js template with App Router
   - ✅ Complete setup from root
   - ✅ Contract compilation + deployment
   - ✅ Frontend integration
@@ -264,20 +373,24 @@ npm run deploy
 - ✅ **Documentation**
   - ✅ Comprehensive README
   - ✅ API documentation
+  - ✅ Framework integration guide
   - ✅ Usage examples
   - ✅ Deployment links
 
 - ✅ **Video Demo**
-  - ⏳ In progress
+  - ✅ Script prepared
+  - ✅ Subtitles prepared
+  - ⏳ Recording in progress
 
 ---
 
 ## 🔗 Links
 
-- **Live Demo**: https://ashagutmann.github.io/BuildingMaterialProcurement/
+- **Live Demo (Vite)**: https://ashagutmann.github.io/BuildingMaterialProcurement/
 - **GitHub Repository**: https://github.com/AshaGutmann/fhevm-react-template
 - **SDK Package**: [packages/fhevm-sdk](./packages/fhevm-sdk)
-- **Example App**: [packages/example-procurement](./packages/example-procurement)
+- **Vite Example**: [packages/example-procurement](./packages/example-procurement)
+- **Next.js Example**: [packages/example-nextjs](./packages/example-nextjs)
 - **Video Demo**: *Coming soon*
 
 ---
