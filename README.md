@@ -339,12 +339,9 @@ export function EncryptButton() {
 
 ## 🎥 Video Demo
 
-[![Video Demo](https://img.shields.io/badge/Watch-Video%20Demo-red?logo=youtube)](https://youtube.com/your-video-link)
+[![Video Demo demo1.mp4 demo2.mp4 demo3.mp4]
 
 > Demonstrates setup, SDK integration, and design choices
-
-**Video Script**: [VIDEO_SCRIPT.md](./VIDEO_SCRIPT.md)
-**Subtitles**: [VIDEO_SUBTITLES.txt](./VIDEO_SUBTITLES.txt)
 
 ---
 
@@ -378,9 +375,7 @@ export function EncryptButton() {
   - ✅ Deployment links
 
 - ✅ **Video Demo**
-  - ✅ Script prepared
-  - ✅ Subtitles prepared
-  - ⏳ Recording in progress
+  - ✅ demo1.mp4 demo2.mp4 demo3.mp4
 
 ---
 
@@ -391,7 +386,7 @@ export function EncryptButton() {
 - **SDK Package**: [packages/fhevm-sdk](./packages/fhevm-sdk)
 - **Vite Example**: [packages/example-procurement](./packages/example-procurement)
 - **Next.js Example**: [packages/example-nextjs](./packages/example-nextjs)
-- **Video Demo**: *Coming soon*
+- **Video Demo**: demo1.mp4 demo2.mp4 demo3.mp4
 
 ---
 
