@@ -35,4 +35,26 @@ export {
   logError,
 } from './debug';
 
+export {
+  encrypt,
+  encryptBatch,
+  prepareEncryptedInput,
+  validateEncryptionInput,
+  encryptedToHex,
+  hexToEncrypted,
+} from './encryption';
+
+export {
+  decrypt,
+  decryptWithRetry,
+  decryptBatch,
+  userDecrypt,
+  publicDecrypt,
+  createDecryptSignature,
+  validateDecryptionRequest,
+  formatDecryptedValue,
+} from './decryption';
+
 export type { LogLevel } from './debug';
+export type { EncryptedValue } from './encryption';
+export type { DecryptionRequest, DecryptionResult } from './decryption';
