@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Building Material Procurement - SDK Integrated</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="header">
+                <h1>🏗️ Private Building Material Procurement</h1>
+                <div class="subtitle">Secure & Confidential Supply Chain Management with FHEVM SDK</div>
+                <div id="walletStatus" class="status disconnected">
+                    Wallet: Not Connected
+                </div>
+            </div>
+
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="create">Create Procurement</button>
+                <button class="nav-tab" data-tab="bid">Submit Bid</button>
+                <button class="nav-tab" data-tab="view">View Procurements</button>
+                <button class="nav-tab" data-tab="manage">Manage Suppliers</button>
+            </div>
+
+            <!-- Create Procurement Tab -->
+            <div id="tab-create" class="tab-content active">
+                <h2>Create New Procurement</h2>
+                <form id="createForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div>
+                                <label for="materialType">Material Type:</label>
+                                <select id="materialType">
+                                    <option value="0">Cement</option>
+                                    <option value="1">Steel</option>
+                                    <option value="2">Concrete</option>
+                                    <option value="3">Brick</option>
+                                    <option value="4">Lumber</option>
+                                    <option value="5">Insulation</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="quantity">Quantity (units) - Will be encrypted:</label>
+                                <input type="number" id="quantity" placeholder="Enter quantity" min="1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label for="qualityGrade">Quality Grade (1-10) - Will be encrypted:</label>
+                                <input type="number" id="qualityGrade" placeholder="Quality grade" min="1" max="10">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="specifications">Specifications:</label>
+                            <textarea id="specifications" placeholder="Detailed specifications and requirements..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Create Procurement</button>
+                </form>
+            </div>
+
+            <!-- Submit Bid Tab -->
+            <div id="tab-bid" class="tab-content">
+                <h2>Submit Bid</h2>
+                <form id="bidForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div>
+                                <label for="bidProcurementId">Procurement ID:</label>
+                                <input type="number" id="bidProcurementId" placeholder="Enter procurement ID" min="1">
+                            </div>
+                            <div>
+                                <label for="bidPrice">Price (ETH) - Will be encrypted:</label>
+                                <input type="number" id="bidPrice" placeholder="0.00" step="0.001" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label for="deliveryTime">Delivery Time (days):</label>
+                                <input type="number" id="deliveryTime" placeholder="Delivery days" min="1">
+                            </div>
+                            <div>
+                                <label for="qualityScore">Quality Score (0-100):</label>
+                                <input type="number" id="qualityScore" placeholder="Quality score" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="certifications">Certifications:</label>
+                            <textarea id="certifications" placeholder="Your certifications and qualifications..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Submit Bid</button>
+                </form>
+            </div>
+
+            <!-- View Procurements Tab -->
+            <div id="tab-view" class="tab-content">
+                <h2>Active Procurements</h2>
+                <button class="btn btn-secondary" id="refreshBtn">Refresh Procurements</button>
+                <div id="procurementsContainer" class="loading">
+                    Click refresh to load procurements...
+                </div>
+            </div>
+
+            <!-- Manage Suppliers Tab -->
+            <div id="tab-manage" class="tab-content">
+                <h2>Supplier Management</h2>
+                <form id="authorizeForm">
+                    <div class="form-group">
+                        <label for="supplierAddress">Supplier Address:</label>
+                        <input type="text" id="supplierAddress" placeholder="0x...">
+                        <button type="submit" class="btn btn-success">Authorize Supplier</button>
+                    </div>
+                </form>
+
+                <form id="reputationForm">
+                    <div class="form-group">
+                        <h3>Update Reputation</h3>
+                        <div class="form-row">
+                            <div>
+                                <label for="reputationAddress">Supplier Address:</label>
+                                <input type="text" id="reputationAddress" placeholder="0x...">
+                            </div>
+                            <div>
+                                <label for="reputationScore">Reputation (0-100):</label>
+                                <input type="number" id="reputationScore" placeholder="Reputation score" min="0" max="100">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Update Reputation</button>
+                    </div>
+                </form>
+
+                <form id="checkForm">
+                    <div class="form-group">
+                        <h3>Check Supplier Status</h3>
+                        <input type="text" id="checkAddress" placeholder="Supplier address">
+                        <button type="submit" class="btn btn-secondary">Check Status</button>
+                        <div id="supplierStatus"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
