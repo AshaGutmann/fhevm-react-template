@@ -10,6 +10,13 @@
 
 This repository contains a **universal FHEVM SDK** and example implementations demonstrating how to build privacy-preserving decentralized applications using Fully Homomorphic Encryption.
 
+### Live Demo
+
+🌐 **[View Live Demo](https://private-building-material-procureme.vercel.app/)**
+
+- ✅ **Video Demo**
+  - ✅ demo1.mp4 demo2.mp4 demo3.mp4
+
 ### 📦 What's Inside
 
 This is a **monorepo** containing:
@@ -211,9 +218,7 @@ A complete privacy-preserving procurement system **built with React and fully in
 - 📜 **Transaction History** - Full audit trail with local storage
 - ⚡ **Full SDK Integration** - Uses SDK core functions and React hooks throughout
 
-### Live Demo
 
-🌐 **[View Live Demo](https://ashagutmann.github.io/BuildingMaterialProcurement/)**
 
 ### SDK Integration Highlights
 
@@ -317,7 +322,7 @@ All **three examples** in this repository **are built with React and fully integ
 - **SDK Integration**: Core SDK with React components and hooks
 - **React Features**: Functional components, useState, useEffect, modular architecture
 - **Run**: `cd examples/example-procurement && npm install && npm run dev`
-- **Live Demo**: [View Demo](https://ashagutmann.github.io/BuildingMaterialProcurement/)
+- **Live Demo**: [View Demo](https://private-building-material-procureme.vercel.app/)
 
 ### Example 3: Building Material Procurement (React-Enabled + SDK)
 - **Location**: `examples/PrivateBuildingMaterialProcurement/`
@@ -506,14 +511,13 @@ export function EncryptButton() {
   - ✅ Usage examples
   - ✅ Deployment links
 
-- ✅ **Video Demo**
-  - ✅ demo1.mp4 demo2.mp4 demo3.mp4
+
 
 ---
 
 ## 🔗 Links
 
-- **Live Demo (Vite)**: https://ashagutmann.github.io/BuildingMaterialProcurement/
+
 - **GitHub Repository**: https://github.com/AshaGutmann/fhevm-react-template
 - **SDK Package**: [packages/fhevm-sdk](./packages/fhevm-sdk)
 - **Next.js Template**: [templates/nextjs](./templates/nextjs)
